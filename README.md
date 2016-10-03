@@ -8,3 +8,7 @@ ex. [backup folder name]:[backwpup job ID]:[WordPress folder]
 
 Detail information: http://kitaney-wordpress.blogspot.jp/2016/09/wp-cli-backwpup-wordpress.html
 
+
+## History
+
+1.1  Fixed the output setting.

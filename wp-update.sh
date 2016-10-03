@@ -58,7 +58,7 @@ if [ -d "$wp_dir" ]; then
     echo ""
     echo "##End of LOG###"
     echo ""
-} 1> $log_file 2>&1
+} 1>> $log_file 2>&1
   fi
 fi
 
