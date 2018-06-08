@@ -11,4 +11,5 @@ Detail information: http://kitaney-wordpress.blogspot.jp/2016/09/wp-cli-backwpup
 
 ## History
 
+1.2  Fixed WP-CLI backwpup option and added language core update.
 1.1  Fixed the output setting.

@@ -46,14 +46,24 @@ if [ -d "$wp_dir" ]; then
     echo "$wp_dir"
 
     cd $wp_dir
-    $WP_CLI backwpup start --jobid=$wp_jobid
-    $WP_CLI plugin list | grep available | cut -d '|' -f 2 | awk  '{print "/usr/local/bin/wp plugin update "$1}' |sh
+    # Backup
+    $WP_CLI backwpup start $wp_jobid
+    # Core Update
     if [ "$wp_default_lang" = "en" ]; then
-      $WP_CLI core update && $WP_CLI core update-db
+      $WP_CLI core update
     else
-      $WP_CLI core update --force --locale=$wp_default_lang && $WP_CLI core update-db
+      $WP_CLI core update --force --locale=$wp_default_lang
     fi
-    $WP_CLI plugin list | grep available | cut -d '|' -f 2 | awk  '{print "/usr/local/bin/wp plugin update "$1}' |sh
+    # Plugin Update
+    $WP_CLI plugin update --all
+#  If you want to update except a plugin, you may use the following script.
+#    $WP_CLI plugin list | grep -v "[except plugin]" | grep available | cut -d '|' -f 2 | awk  '{print "/usr/local/bin/wp plugin update "$1}' |sh
+
+    # Theme Update
+#    $WP_CLI theme update --all
+
+    # Language Update
+    $WP_CLI language core update
 
     echo ""
     echo "##End of LOG###"
